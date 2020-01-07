@@ -67,5 +67,22 @@ wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 sudo apt install -y ./teamviewer_amd64.deb
 sudo rm -f teamviewer_amd64.deb
 
+#Node
+echo "-- Installation de Node --"
+wget -qO- https://deb.nodesource.com/setup | bash -
+apt-get install -y nodejs
+
+apt-get install -y npm
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+sudo apt-get install nodejs nodejs-legacy node-less
+sudo apt-get install npm
+#Odoo dependency
+sudo npm install -g less
+sudo npm install -g less-plugin-clean-css
+sudo ln -s /usr/local/bin/lessc /usr/bin/lessc
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+
+sudo npm install -g less
+
 
 exit 0
