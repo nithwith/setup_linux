@@ -6,9 +6,12 @@ sudo apt-get upgrade -y --quiet
 #standard
 sudo apt-get install -y --quiet apache2
 sudo apt-get install -y --quiet php7
-sudo apt-get install -y --quiet python2
-sudo apt-get install -y --quiet python3
 
+sudo apt-get install -y --quiet python
+sudo pip install -r requirements.txt
+
+sudo apt-get install -y --quiet python3
+sudo pip3 install -r requirements.txt
 
 # TERMINATOR
 sudo apt-get install terminator
@@ -82,6 +85,10 @@ sudo apt install -y --quiet snapd snapd-xdg-open
 sudo snap install pycharm-professional --classic
 sudo snap install intellij-professional --classic
 
+sudo apt-add-repository ppa:maarten-fonville/android-studio
+sudo apt-get update -y
+sudo apt-get install -y --quiet android-studio
+
 #Xivo
 wget http://mirror.xivo.solutions/iso/archives/xivo-2018.05.07/xivoclient-2018.05.07-amd64.deb
 sudo apt install -y --quiet ./xivoclient-2018.05.07-amd64.deb
@@ -100,6 +107,9 @@ wget https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0
 sudo apt install -y --quiet synology-drive-client-11061.x86_64.deb
 sudo rm -rf synology-drive-client-11061.x86_64.deb
 echo "Config NAS"
+
+#Baobab
+sudo apt install -y --quiet
 
 bash requirement_odoo.sh
 
