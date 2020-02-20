@@ -1,78 +1,71 @@
 #!/bin/bash
 
-echo "-- A lancer en sudo --"
-sudo apt-get install -y apache2
-sudo apt-get install -y php7
+sudo apt-get update --quiet
+sudo apt-get upgrade -y --quiet
 
-echo "-- Lauch python install script --"
-bash requirement_odoo.sh
+#standard
+sudo apt-get install -y --quiet apache2
+sudo apt-get install -y --quiet php7
+sudo apt-get install -y --quiet python2
+sudo apt-get install -y --quiet python3
+
 
 # TERMINATOR
-echo "-- Installation de TERMINATOR --"
 sudo apt-get install terminator
 
 # ATOM
-echo "-- Installation de ATOM --"
 sudo add-apt-repository ppa:webupd8team/atom
 sudo apt-get update
-sudo apt-get install -y atom
+sudo apt-get install -y --quiet atom
 
 # SPOTIFY
-echo "-- Installation de Spotify --"
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 0DF731E45CE24F27EEEB1450EFDC8610341D9410
 echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update
-sudo apt-get install -y spotify-client
+sudo apt-get install -y --quiet spotify-client
 
 # GPARTED
-echo "-- Installation de GParted --"
-sudo apt-get -y install gparted
+sudo apt-get -y --quiet install gparted
 
-# Nylas Mail
-echo "-- Installation de  Thunderbird --"
-sudo apt-get -y install thunderbird
+# Thunderbird Mail
+sudo apt-get -y --quiet install thunderbird
 
 # Star UML
-echo "-- Installation de  Star UML --"
-wget staruml.io/download/release/v2.8.0/StarUML-v2.8.0-64-bit.deb
-sudo dpkg -i StarUML-v2.8.0-64-bit.deb
-sudo rm -f StarUML-v2.8.0-64-bit.deb
+wget "http://staruml.io/download/releases/StarUML-3.2.0.AppImage"
+sudo chmod a+x StarUML-3.2.0.AppImage
+sudo ./StarUML-3.2.0.AppImage -- install
+sudo rm -f StarUML-3.2.0.AppImage
 
 #Shutter
-echo "-- Installation de  Shutter --"
-sudo apt-get -y install shutter
+sudo apt-get -y --quiet install shutter
 
 # Telegram
-#echo "-- Installation de  Star UML --"
-#udo add-apt-repository -y ppa:atareao/telegram && sudo apt-get update && sudo apt-get install -y telegram
+#echo "-- Installation de   --"
+#udo add-apt-repository -y --quiet ppa:atareao/telegram && sudo apt-get update && sudo apt-get install -y --quiet telegram
 
 #Chrome
-echo "-- Installation de  Chrome --"
 sudo sh -c 'echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install -y google-chrome-stable
+sudo apt-get install -y --quiet google-chrome-stable
 
 #Ansible
-echo "-- Installation de  Ansible --"
-sudo apt-get install -y ansible
+sudo apt-get install -y --quiet ansible
 
 #Filezilla
 echo "-- Installation de  Filezilla --"
-sudo apt-get install -y filezilla
+sudo apt-get install -y --quiet filezilla
 
 #TeamViewer
-echo "-- Installation de  TeamViewer --"
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-sudo apt install -y ./teamviewer_amd64.deb
+sudo apt install -y --quiet ./teamviewer_amd64.deb
 sudo rm -f teamviewer_amd64.deb
 
 #Node
-echo "-- Installation de Node --"
 wget -qO- https://deb.nodesource.com/setup | bash -
-apt-get install -y nodejs
+apt-get install -y --quiet nodejs
 
-apt-get install -y npm
+apt-get install -y --quiet npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 sudo apt-get install nodejs nodejs-legacy node-less
 sudo apt-get install npm
@@ -84,5 +77,30 @@ sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 sudo npm install -g less
 
+#IDE
+sudo apt install -y --quiet snapd snapd-xdg-open
+sudo snap install pycharm-professional --classic
+sudo snap install intellij-professional --classic
+
+#Xivo
+wget http://mirror.xivo.solutions/iso/archives/xivo-2018.05.07/xivoclient-2018.05.07-amd64.deb
+sudo apt install -y --quiet ./xivoclient-2018.05.07-amd64.deb
+sudo rm -f xivoclient-2018.05.07-amd64.deb
+
+#Docker
+sudo apt install -y --quiet docker
+sudo apt install -y --quiet docker-compose
+echo "Changer fichier /etc/docker/daemon.json with {'data-root': '/home/theo/docker',}"
+
+#keepassxc
+sudo snap install keepassxc
+
+#Nas
+wget https://global.download.synology.com/download/Tools/SynologyDriveClient/2.0.1-11061/Ubuntu/Installer/x86_64/synology-drive-client-11061.x86_64.deb
+sudo apt install -y --quiet synology-drive-client-11061.x86_64.deb
+sudo rm -rf synology-drive-client-11061.x86_64.deb
+echo "Config NAS"
+
+bash requirement_odoo.sh
 
 exit 0
